@@ -26,3 +26,46 @@ FROM temp;
 -- Names will also have to be ordered alphabetically
 -- SECOND ATTEMPT will try to use four separate CTEs, one for eah occupation, and order those names alphabetically for each CTE
 
+-- SECOND ATTEMPT:
+WITH 
+doctors AS(
+    SELECT
+        CASE
+            WHEN occupation = 'Doctor' THEN name
+        END AS doctor_names
+    FROM occupations
+),
+professors AS(
+    SELECT
+        CASE
+            WHEN occupation = 'Professor' THEN name
+        END AS professor_names
+    FROM occupations
+),
+singers AS(
+    SELECT
+        CASE
+            WHEN occupation = 'Singer' THEN name
+        END AS singer_names
+    FROM occupations
+),
+actors AS(
+    SELECT
+        CASE
+            WHEN occupation = 'Actor' THEN name
+        END AS actor_names
+    FROM occupations
+)
+SELECT doctors.doctor_names, professors.professor_names, singers.singer_names, actors.actor_names
+FROM doctors, professors, singers, actors
+WHERE doctor_names IS NOT NULL
+AND professor_names IS NOT NULL
+AND singer_names IS NOT NULL
+AND actor_names IS NOT NULL;
+
+-- This second attempt was NOT successful
+-- However, it did work briefly for the first column of doctor names
+-- I think I'm performing a join on all four of these CTEs as the result was an extremely long table
+-- Need a way to output each column individually without joining them
+-- Also still need to order by name alphabetically
+
