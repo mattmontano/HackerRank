@@ -95,4 +95,37 @@ AND actor_names IS NOT NULL;
 -- I think I'm performing a join on all four of these CTEs as the result was an extremely long table
 -- Need a way to output each column individually without joining them
 -- Also still need to order by name alphabetically
+-- I've also realized that I no longer need to use CASE because I'm creating individual CTEs for each occupation, can simply use basic WHERE logic
+
+-- THIRD ATTEMPT:
+WITH 
+doctors AS(
+    SELECT name AS d_names
+    FROM occupations
+    WHERE occupation = 'Doctor'
+    ORDER BY name
+),
+professors AS(
+    SELECT name AS p_names
+    FROM occupations
+    WHERE occupation = 'Professor'
+    ORDER BY name
+),
+singers AS(
+    SELECT name AS s_names
+    FROM occupations
+    WHERE occupation = 'Singer'
+    ORDER BY name
+),
+actors AS(
+    SELECT name AS a_names
+    FROM occupations
+    WHERE occupation = 'Actor'
+    ORDER BY name
+)
+SELECT d_names, p_names, s_names, a_names
+FROM doctors, professors, singers, actors;
+
+-- Result is still incorrectly joining the CTEs
+-- Individual CTEs are now properly ordered alphabetically
 
