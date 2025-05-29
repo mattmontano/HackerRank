@@ -1,0 +1,21 @@
+-- Below are attempts at solving the HackerRank "Occupations" problem for SQL
+
+-- FIRST ATTEMPT:
+WITH temp AS(
+    SELECT
+        CASE
+            WHEN occupation = 'Doctor' THEN name
+        END,
+        CASE
+            WHEN occupation = 'Professor' THEN name
+        END,
+        CASE
+            WHEN occupation = 'Singer' THEN name
+        END,
+        CASE
+            WHEN occupation = 'Actor' THEN name
+        END
+    FROM occupations
+)
+SELECT *
+FROM temp;
