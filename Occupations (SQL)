@@ -19,3 +19,10 @@ WITH temp AS(
 )
 SELECT *
 FROM temp;
+
+-- This first attempt successfully creates a CTE with columns for each of the occupations
+-- When selecting all, NULL is filled in under each occupation where the occupation does not match for each column
+-- Need to figure out a way to limit the amount of rows to be the maximum number of the most popular occupation
+-- Names will also have to be ordered alphabetically
+-- SECOND ATTEMPT will try to use four separate CTEs, one for eah occupation, and order those names alphabetically for each CTE
+
